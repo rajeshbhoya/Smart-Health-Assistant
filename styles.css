@@ -1,0 +1,427 @@
+/* ===========================================================
+   Smart Health Assistant — Design System
+   CSS variables are set dynamically by ui/theme.py (light/dark).
+   =========================================================== */
+
+* { box-sizing: border-box; }
+
+.stApp {
+    background-color: var(--bg);
+    color: var(--text);
+}
+.stApp, .stApp p, .stApp li, .stApp span, .stApp label, .stApp div {
+    color: var(--text);
+}
+.stApp .stCaption, .stApp small, .sha-muted { color: var(--muted) !important; }
+header[data-testid="stHeader"] { background-color: var(--bg) !important; }
+.stApp [data-testid="stToolbar"] * , .stApp [data-testid="stHeader"] * { color: var(--text) !important; }
+
+/* ---------- Layout ---------- */
+.main .block-container {
+    max-width: 1280px;
+    padding-top: 1.25rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+    padding-bottom: 3rem;
+    overflow-x: hidden;
+}
+
+/* ---------- Typography scale ---------- */
+h1, .sha-h1 {
+    color: var(--text);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    font-size: 1.9rem !important;
+    margin-bottom: 0.15rem !important;
+}
+h2, .sha-h2 {
+    color: var(--text);
+    font-weight: 750;
+    font-size: 1.35rem !important;
+}
+h3, .sha-h3 {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 1.1rem !important;
+}
+.sha-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+/* ---------- Page header ---------- */
+.sha-page-header { margin-bottom: 1.1rem; }
+.sha-page-header .sha-page-title-row {
+    display: flex; align-items: center; gap: 0.6rem;
+}
+.sha-page-header h1 { margin: 0 !important; }
+.sha-page-header .sha-subtitle {
+    color: var(--muted); font-size: 0.98rem; margin-top: 0.15rem;
+}
+
+/* ---------- Icon badge (consistent "3D-ish" icon language) ---------- */
+.sha-icon-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.5rem; height: 2.5rem; border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 6px var(--shadow);
+    flex-shrink: 0;
+}
+.sha-page-header .sha-icon-badge { width: 3rem; height: 3rem; border-radius: 16px; font-size: 1.5rem !important; }
+
+/* ---------- Cards ---------- */
+.sha-card {
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 1px 2px var(--shadow), 0 8px 24px -12px var(--shadow);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+/* st.container(key="cardbox_*") wrappers — the correct way to put several
+   real Streamlit widgets inside one styled card (see ui.card_container). */
+[class*="st-key-cardbox_"] {
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 1px 2px var(--shadow), 0 8px 24px -12px var(--shadow);
+    border: 1px solid var(--border);
+    padding: 1.1rem 1.35rem;
+    margin-bottom: 1rem;
+}
+
+/* ---------- Metric card ---------- */
+.sha-metric {
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 1px 2px var(--shadow), 0 8px 20px -14px var(--shadow);
+    border: 1px solid var(--border);
+    padding: 1.15rem 1.25rem;
+    min-height: 132px;
+    display: flex; flex-direction: column; gap: 0.55rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.sha-metric:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow); }
+.sha-metric-top { display: flex; align-items: center; justify-content: space-between; }
+.sha-metric-label {
+    font-size: 0.74rem; color: var(--muted); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+}
+.sha-metric-value { font-size: 1.65rem; font-weight: 800; color: var(--text); line-height: 1.1; }
+.sha-metric-sub { font-size: 0.8rem; color: var(--muted); }
+.sha-trend { font-size: 0.76rem; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 999px; display: inline-flex; align-items: center; gap: 0.2rem; }
+.sha-trend-up { background: color-mix(in srgb, var(--success) 16%, transparent); color: var(--success); }
+.sha-trend-down { background: color-mix(in srgb, var(--danger) 16%, transparent); color: var(--danger); }
+.sha-trend-neutral { background: var(--surface-alt); color: var(--muted); }
+
+/* ---------- Alerts ---------- */
+.sha-alert { border-radius: 14px; padding: 0.85rem 1.05rem; margin: 0.6rem 0; font-size: 0.92rem; border-left: 4px solid; background: var(--surface); }
+.sha-alert-info { border-color: var(--secondary); }
+.sha-alert-success { border-color: var(--success); }
+.sha-alert-warning { border-color: var(--warning); }
+.sha-alert-danger { border-color: var(--danger); }
+
+/* ---------- Progress bar ---------- */
+.sha-progress-track { background: var(--surface-alt); border-radius: 999px; height: 12px; width: 100%; overflow: hidden; border: 1px solid var(--border); }
+.sha-progress-fill { background: linear-gradient(90deg, var(--primary), var(--accent)); height: 100%; border-radius: 999px; transition: width 0.5s ease; }
+
+/* ---------- AI / food / recipe cards ---------- */
+.sha-ai-card { background: var(--surface-alt); border-left: 4px solid var(--primary); border-radius: 14px; padding: 1rem 1.25rem; margin: 0.5rem 0; }
+.sha-food-card, .sha-recipe-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1rem 1.1rem; margin-bottom: 0.75rem; box-shadow: 0 1px 2px var(--shadow);
+}
+.sha-food-card h4, .sha-recipe-card h4 { margin: 0 0 0.3rem 0; color: var(--primary); font-size: 1rem; }
+
+/* ---------- Badges ---------- */
+.sha-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; }
+.sha-badge-success { background: color-mix(in srgb, var(--success) 15%, transparent); color: var(--success); }
+.sha-badge-warning { background: color-mix(in srgb, var(--warning) 18%, transparent); color: var(--warning); }
+.sha-badge-danger { background: color-mix(in srgb, var(--danger) 15%, transparent); color: var(--danger); }
+.sha-badge-info { background: color-mix(in srgb, var(--secondary) 15%, transparent); color: var(--secondary); }
+.sha-badge-neutral { background: var(--surface-alt); color: var(--muted); border: 1px solid var(--border); }
+
+/* ---------- Info panel (replaces raw dict/JSON views) ---------- */
+.sha-info-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.sha-info-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 1.1rem; border-bottom: 1px solid var(--border); }
+.sha-info-row:last-child { border-bottom: none; }
+.sha-info-row:nth-child(even) { background: var(--surface-alt); }
+.sha-info-label { color: var(--muted); font-weight: 600; font-size: 0.9rem; }
+.sha-info-value { color: var(--text); font-weight: 700; font-size: 0.9rem; text-align: right; }
+
+/* ---------- Quick action cards ---------- */
+.sha-qa-wrap .stButton > button, [class*="st-key-qa_wrap_"] .stButton > button {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 16px !important;
+    color: var(--text) !important;
+    font-weight: 700 !important;
+    padding: 0.9rem 0.6rem !important;
+    box-shadow: 0 1px 2px var(--shadow);
+    transition: all 0.15s ease;
+}
+.sha-qa-wrap .stButton > button:hover, [class*="st-key-qa_wrap_"] .stButton > button:hover {
+    border-color: var(--primary) !important;
+    background: var(--hover) !important;
+    transform: translateY(-1px);
+}
+
+/* ---------- Empty / loading / error states ---------- */
+.sha-empty-state { text-align: center; padding: 2.25rem 1rem; color: var(--muted); background: var(--surface); border: 1px dashed var(--border); border-radius: 16px; }
+.sha-empty-state .sha-empty-icon { font-size: 2.25rem; margin-bottom: 0.5rem; }
+
+/* ---------- Chat bubbles (AI Assistant) ---------- */
+.sha-chat-row { display: flex; gap: 0.6rem; margin: 0.55rem 0; align-items: flex-start; }
+.sha-chat-row.user { flex-direction: row-reverse; }
+.sha-chat-avatar {
+    width: 2.1rem; height: 2.1rem; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 1.05rem; flex-shrink: 0;
+    background: var(--surface-alt); border: 1px solid var(--border);
+}
+.sha-chat-bubble { max-width: 78%; padding: 0.7rem 1rem; border-radius: 16px; font-size: 0.94rem; line-height: 1.45; }
+.sha-chat-row.assistant .sha-chat-bubble { background: var(--surface-alt); border: 1px solid var(--border); border-top-left-radius: 4px; }
+.sha-chat-row.user .sha-chat-bubble { background: var(--primary); color: white; border-top-right-radius: 4px; }
+.sha-chat-row.user .sha-chat-bubble * { color: white !important; }
+
+/* ---------- Buttons: touch-friendly everywhere ---------- */
+.stButton > button, .stDownloadButton > button, .stFormSubmitButton > button {
+    border-radius: 12px !important;
+    min-height: 44px;
+    font-weight: 700 !important;
+    background: var(--surface) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+}
+button[kind^="primary"], [data-testid^="stBaseButton-primary"] {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
+}
+button[kind^="primary"] *, [data-testid^="stBaseButton-primary"] * {
+    color: white !important;
+}
+button[kind^="primary"]:hover, [data-testid^="stBaseButton-primary"]:hover {
+    background: var(--primary-strong) !important;
+    border-color: var(--primary-strong) !important;
+}
+
+/* ---------- Tables ---------- */
+.sha-scroll-table { overflow-x: auto; width: 100%; border-radius: 14px; }
+div[data-testid="stDataFrame"] { border-radius: 14px; overflow-x: auto; overflow-y: hidden; border: 1px solid var(--border); }
+
+/* ---------- Tabs ---------- */
+.stTabs [data-baseweb="tab-list"] { gap: 0.25rem; border-bottom: 1px solid var(--border); }
+.stTabs [data-baseweb="tab"] { border-radius: 10px 10px 0 0; font-weight: 600; }
+
+/* ---------- Sidebar (app-like) ---------- */
+section[data-testid="stSidebar"] {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+}
+section[data-testid="stSidebar"] * { color: var(--text); }
+.sha-sidebar-brand { display: flex; align-items: center; gap: 0.6rem; padding: 0.4rem 0 1rem 0; }
+.sha-sidebar-brand-name { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; }
+.sha-sidebar-user { display: flex; align-items: center; gap: 0.6rem; padding: 0.8rem; background: var(--surface-alt); border-radius: 14px; margin-top: 0.5rem; border: 1px solid var(--border); }
+.sha-sidebar-user-name { font-weight: 700; font-size: 0.9rem; }
+.sha-sidebar-user-goal { font-size: 0.76rem; color: var(--muted); }
+
+/* Native Streamlit nav styling → app-like active/inactive states */
+[data-testid="stSidebarNav"] a, [data-testid="stSidebarNavLink"] {
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    color: var(--muted) !important;
+}
+[data-testid="stSidebarNav"] a[aria-current="page"],
+[data-testid="stSidebarNavLink"][aria-current="page"] {
+    background: var(--surface-alt) !important;
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+}
+
+/* ---------- Animations ---------- */
+.sha-card, .sha-metric, .sha-food-card, .sha-recipe-card { animation: sha-fade-in 0.25s ease; }
+@keyframes sha-fade-in { from { opacity: 0; transform: translateY(4px);} to { opacity: 1; transform: translateY(0);} }
+
+img { max-width: 100%; height: auto; }
+
+/* ===========================================================
+   Gradients & decorative surfaces
+   =========================================================== */
+:root {
+    --sha-gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 55%, var(--accent) 100%);
+    --sha-gradient-soft: linear-gradient(135deg, color-mix(in srgb, var(--primary) 10%, var(--surface)) 0%, color-mix(in srgb, var(--accent) 10%, var(--surface)) 100%);
+}
+
+/* ---------- Greeting / hero banner (dashboard header) ---------- */
+.sha-hero-banner {
+    background: var(--sha-gradient-soft);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 1.4rem 1.7rem;
+    margin-bottom: 1.1rem;
+    position: relative;
+    overflow: hidden;
+}
+.sha-hero-banner::after {
+    content: "";
+    position: absolute; top: -40%; right: -8%;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: var(--sha-gradient); opacity: 0.12; filter: blur(2px);
+}
+.sha-hero-banner h1 { margin: 0 !important; }
+.sha-hero-banner .sha-subtitle { margin-top: 0.2rem; }
+
+/* ---------- Avatar (initials) ---------- */
+.sha-avatar {
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: var(--sha-gradient); color: #fff;
+    font-weight: 800; flex-shrink: 0; letter-spacing: 0.02em;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* ---------- Circular progress ring ---------- */
+.sha-ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.sha-ring {
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    position: relative; box-shadow: inset 0 0 0 1px var(--border);
+}
+.sha-ring-inner {
+    width: 76%; height: 76%; border-radius: 50%; background: var(--surface);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 1px 3px var(--shadow);
+}
+.sha-ring-value { font-size: 1.15rem; font-weight: 800; color: var(--text); line-height: 1.1; }
+.sha-ring-icon { font-size: 1.1rem; margin-bottom: 0.1rem; }
+.sha-ring-label { font-size: 0.82rem; color: var(--muted); font-weight: 600; text-align: center; }
+
+/* ---------- Quick action tiles ---------- */
+.sha-qa-icon { display: flex; justify-content: center; margin-bottom: 0.35rem; }
+[class*="st-key-qa_wrap_"] { background: transparent !important; box-shadow: none !important; border: none !important; padding: 0 !important; }
+[class*="st-key-qa_wrap_"] .stButton > button {
+    display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
+    padding: 1.1rem 0.6rem !important; min-height: 92px;
+}
+
+/* ---------- Auth screen (split hero + card) ---------- */
+[class*="st-key-auth_shell"] {
+    border-radius: 26px; overflow: hidden; box-shadow: 0 8px 40px -18px var(--shadow);
+    border: 1px solid var(--border); margin-top: 0.5rem;
+}
+[class*="st-key-auth_shell"] > [data-testid="stVerticalBlockBorderWrapper"],
+[class*="st-key-auth_shell"] [data-testid="stHorizontalBlock"] { align-items: stretch !important; gap: 0 !important; }
+[class*="st-key-auth_hero"] {
+    background: var(--sha-gradient); padding: 3rem 2.4rem; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;
+}
+[class*="st-key-auth_hero"]::before {
+    content: ""; position: absolute; width: 360px; height: 360px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); top: -120px; left: -100px;
+}
+[class*="st-key-auth_hero"]::after {
+    content: ""; position: absolute; width: 260px; height: 260px; border-radius: 50%;
+    background: rgba(255,255,255,0.07); bottom: -100px; right: -60px;
+}
+[class*="st-key-auth_hero"] * { color: #fff !important; position: relative; z-index: 1; }
+[class*="st-key-auth_hero"] .sha-auth-icon {
+    width: 4.5rem; height: 4.5rem; border-radius: 20px; background: rgba(255,255,255,0.16);
+    display: flex; align-items: center; justify-content: center; font-size: 2.2rem; margin-bottom: 1.3rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+}
+[class*="st-key-auth_hero"] h1 { font-size: 2rem !important; margin-bottom: 0.5rem !important; }
+[class*="st-key-auth_hero"] .sha-auth-tagline { font-size: 1.02rem; opacity: 0.92; max-width: 26rem; line-height: 1.5; margin-bottom: 1.6rem; }
+[class*="st-key-auth_hero"] .sha-auth-feature { display: flex; align-items: center; gap: 0.6rem; margin: 0.5rem 0; font-size: 0.94rem; opacity: 0.95; }
+[class*="st-key-auth_hero"] .sha-auth-feature .dot {
+    width: 1.6rem; height: 1.6rem; border-radius: 50%; background: rgba(255,255,255,0.18);
+    display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0;
+}
+[class*="st-key-auth_card"] {
+    background: var(--surface); padding: 2.6rem 2.6rem; height: 100%;
+    display: flex; flex-direction: column; justify-content: center;
+}
+[class*="st-key-auth_card"] h2 { margin-bottom: 0.15rem !important; }
+[class*="st-key-auth_card"] .sha-auth-sub { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.3rem; }
+
+@media (max-width: 900px) {
+    [class*="st-key-auth_hero"] { padding: 2.1rem 1.6rem; text-align: center; align-items: center; }
+    [class*="st-key-auth_hero"] .sha-auth-tagline { max-width: 100%; }
+    [class*="st-key-auth_hero"] .sha-auth-feature { justify-content: center; }
+    [class*="st-key-auth_card"] { padding: 1.8rem 1.4rem; }
+}
+
+/* ---------- Chat bubbles: style native st.chat_message ---------- */
+[data-testid="stChatMessage"] { border-radius: 16px; padding: 0.15rem 0.2rem; margin-bottom: 0.4rem; }
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] {
+    background: var(--surface-alt); border: 1px solid var(--border); border-radius: 16px; border-top-left-radius: 4px;
+    padding: 0.7rem 1rem !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] {
+    background: var(--primary); border-radius: 16px; border-top-right-radius: 4px; padding: 0.7rem 1rem !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] * { color: #fff !important; }
+[data-testid="stChatMessageAvatarUser"], [data-testid="stChatMessageAvatarAssistant"] {
+    background: var(--sha-gradient) !important; color: #fff !important; box-shadow: 0 1px 3px var(--shadow);
+}
+
+/* ---------- Suggested prompt chips (AI Assistant) ---------- */
+[class*="st-key-chat_suggested_prompts"] .stButton > button {
+    border-radius: 999px !important; font-size: 0.85rem !important; padding: 0.5rem 1rem !important;
+    background: var(--surface-alt) !important; border: 1px solid var(--border) !important;
+}
+[class*="st-key-chat_suggested_prompts"] .stButton > button:hover {
+    background: var(--primary) !important; color: #fff !important; border-color: var(--primary) !important;
+}
+
+/* ---------- Food / recipe card polish ---------- */
+.sha-food-card, .sha-recipe-card { display: flex; flex-direction: column; gap: 0.15rem; }
+.sha-food-card-head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.2rem; }
+.sha-food-card-head .sha-icon-badge { width: 2.4rem; height: 2.4rem; font-size: 1.15rem !important; }
+
+/* ---------- Reminder / list row cards ---------- */
+[class*="st-key-cardbox_reminder_"] { transition: box-shadow 0.15s ease; }
+[class*="st-key-cardbox_reminder_"]:hover { box-shadow: 0 4px 16px var(--shadow); }
+
+/* ---------- Metric card icon backgrounds already accent-colored; add subtle top gradient bar ---------- */
+.sha-metric { position: relative; }
+
+/* ---------- Sidebar polish ---------- */
+.sha-sidebar-user { gap: 0.75rem; }
+[data-testid="stSidebarNav"] a, [data-testid="stSidebarNavLink"] { padding: 0.5rem 0.75rem !important; margin: 0.05rem 0; }
+
+/* ---------- Section header spacing ---------- */
+.sha-section-row { display: flex; align-items: center; justify-content: space-between; margin-top: 0.3rem; }
+
+/* Profile avatar strip: vertically center avatar next to name/email */
+[class*="st-key-profile_avatar_strip"] [data-testid="stHorizontalBlock"] { align-items: center !important; }
+[class*="st-key-settings_avatar_strip"] [data-testid="stHorizontalBlock"] { align-items: center !important; }
+
+/* Responsive: rings & auth on small mobile */
+@media (max-width: 480px) {
+    .sha-hero-banner { padding: 1.1rem 1.15rem; border-radius: 18px; }
+    .sha-auth-hero .sha-auth-icon { width: 3.6rem; height: 3.6rem; font-size: 1.8rem; }
+    .sha-auth-hero h1 { font-size: 1.55rem !important; }
+}
+
+/* ===========================================================
+   Responsive breakpoints
+   =========================================================== */
+
+/* Tablet */
+@media (max-width: 1023px) {
+    .main .block-container { padding-left: 1.1rem; padding-right: 1.1rem; }
+    .sha-metric-value { font-size: 1.4rem; }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .main .block-container { padding-left: 0.65rem; padding-right: 0.65rem; padding-top: 0.85rem; }
+    .sha-card, .sha-metric { padding: 0.95rem 1.05rem; }
+    .sha-metric-value { font-size: 1.3rem; }
+    h1, .sha-h1 { font-size: 1.35rem !important; }
+    h2, .sha-h2 { font-size: 1.1rem !important; }
+    .stButton > button, .stDownloadButton > button, .stFormSubmitButton > button { width: 100%; }
+    .sha-chat-bubble { max-width: 88%; }
+    .sha-page-header .sha-icon-badge { width: 2.4rem; height: 2.4rem; font-size: 1.2rem !important; }
+}
